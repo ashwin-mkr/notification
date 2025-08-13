@@ -1,0 +1,86 @@
+<!-- Notification Icon + Count Badge -->
+<div class="notification-box" (click)="toggleShow()" (clickOutside)="closeDropdown()">
+  <app-common-svg-icon [icon]="'notification'"></app-common-svg-icon> 
+  <span class="badge rounded-pill badge-primary" *ngIf="notifications?.length > 0">
+    {{ notifications?.length || 0 }}
+  </span>
+</div>
+
+<!-- Dropdown Popup -->
+<div class="notification-dropdown" [class.active]="isShow" [@slideInOut]>
+  <div class="notification-header">
+    <h5 class="notification-title">Notifications</h5>
+    <button class="close-btn" (click)="closeDropdown()" *ngIf="isShow">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="notification-loading">
+    <div class="spinner"></div>
+    <p>Loading notifications...</p>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="error && !loading" class="notification-error">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>{{ error }}</p>
+    <button class="retry-btn" (click)="fetchNotifications()">Retry</button>
+  </div>
+
+  <!-- Notification list -->
+  <div class="notification-content" *ngIf="!loading && !error">
+    <!-- Empty state -->
+    <div *ngIf="latestThree.length === 0" class="notification-empty">
+      <i class="fas fa-bell-slash"></i>
+      <p>No notifications available</p>
+    </div>
+
+    <!-- Latest notifications loop -->
+    <div class="notification-list" *ngIf="latestThree.length > 0">
+      <div 
+        *ngFor="let note of latestThree; trackBy: trackByNotification" 
+        class="notification-item"
+        [class.unread]="!note.read"
+        (click)="openNotificationDialog(note)"
+      >
+        <div class="notification-avatar">
+          <img
+            [src]="getNotificationAvatar(note)"
+            alt="Notification"
+            onerror="this.src='assets/images/logo/notification-logo.jpg'"
+          />
+          <div class="notification-indicator" *ngIf="!note.read"></div>
+        </div>
+        
+        <div class="notification-body">
+          <div class="notification-header-info">
+            <h6 class="notification-sender">
+              {{ getNotificationSender(note) }}
+            </h6>
+            <small class="notification-time">{{ getRelativeTime(note.date) }}</small>
+          </div>
+          
+          <p class="notification-message">
+            {{ getMessage(note.message) }}
+          </p>
+          
+          <div class="notification-actions" *ngIf="isTicketNotification(note.message)">
+            <span class="notification-badge">New Ticket</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="notification-footer">
+      <button class="mark-all-read-btn" (click)="markAllAsRead()" *ngIf="hasUnreadNotifications()">
+        Mark all as read
+      </button>
+      <a class="view-all-link" [routerLink]="['/notifications']">View all notifications</a>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="notification-backdrop" *ngIf="isShow" (click)="closeDropdown()"></div>

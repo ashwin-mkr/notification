@@ -1,0 +1,321 @@
+// Variables
+$primary-color: #4f46e5;
+$success-color: #10b981;
+$danger-color: #ef4444;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+$white: #ffffff;
+
+// Dialog Container
+.notification-dialog-container {
+  padding: 0;
+  overflow: hidden;
+}
+
+// Dialog Header
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  background: linear-gradient(135deg, $primary-color 0%, lighten($primary-color, 10%) 100%);
+  color: $white;
+  margin: -24px -24px 0 -24px;
+
+  .dialog-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: $white;
+
+    .notification-icon {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+
+  .close-button {
+    color: $white;
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.2);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba($white, 0.2);
+      transform: scale(1.05);
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+// Divider
+.notification-divider {
+  border: none;
+  border-top: 1px solid $gray-200;
+  margin: 20px 0;
+}
+
+// Dialog Content
+.dialog-content {
+  padding: 0 24px 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $gray-700;
+}
+
+.notification-details {
+  .detail-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding: 12px;
+    background-color: $gray-50;
+    border-radius: 8px;
+    border-left: 3px solid $primary-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 80px;
+      font-weight: 600;
+      color: $gray-800;
+
+      i {
+        color: $primary-color;
+        font-size: 14px;
+        width: 16px;
+        text-align: center;
+      }
+
+      strong {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .detail-value {
+      flex: 1;
+      margin-left: 16px;
+      color: $gray-600;
+      word-break: break-word;
+
+      &.message-content {
+        background-color: $white;
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid $gray-200;
+        font-style: italic;
+        line-height: 1.5;
+      }
+
+      .account-type-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        background: linear-gradient(135deg, $success-color 0%, lighten($success-color, 10%) 100%);
+        color: $white;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+// Dialog Actions
+.dialog-actions {
+  border-top: 1px solid $gray-200;
+  margin: 20px -24px -24px;
+  padding: 16px 24px;
+  background-color: $gray-50;
+  gap: 12px;
+
+  .accept-button {
+    background: linear-gradient(135deg, $success-color 0%, lighten($success-color, 10%) 100%);
+    color: $white;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 2px 4px rgba($success-color, 0.2);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background: linear-gradient(135deg, darken($success-color, 5%) 0%, $success-color 100%);
+      box-shadow: 0 4px 8px rgba($success-color, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+
+  .close-button-action {
+    background-color: $white;
+    color: $gray-600;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background-color: $gray-100;
+      border-color: $gray-400;
+      color: $gray-700;
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 600px) {
+  .notification-dialog-container {
+    .dialog-header {
+      padding: 16px 20px 12px;
+
+      .dialog-title {
+        font-size: 1.1rem;
+      }
+    }
+
+    .dialog-content {
+      padding: 0 20px 16px;
+    }
+
+    .notification-details .detail-row {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .detail-label {
+        margin-bottom: 8px;
+      }
+
+      .detail-value {
+        margin-left: 0;
+      }
+    }
+
+    .dialog-actions {
+      padding: 12px 20px;
+      flex-direction: column-reverse;
+
+      .accept-button,
+      .close-button-action {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .notification-dialog-container {
+    .dialog-header {
+      background: linear-gradient(135deg, $gray-800 0%, $gray-700 100%);
+    }
+
+    .notification-divider {
+      border-top-color: $gray-600;
+    }
+
+    .dialog-content {
+      color: $gray-300;
+    }
+
+    .notification-details .detail-row {
+      background-color: $gray-800;
+      border-left-color: $primary-color;
+
+      .detail-label {
+        color: $gray-200;
+      }
+
+      .detail-value {
+        color: $gray-300;
+
+        &.message-content {
+          background-color: $gray-700;
+          border-color: $gray-600;
+          color: $gray-200;
+        }
+      }
+    }
+
+    .dialog-actions {
+      background-color: $gray-800;
+      border-top-color: $gray-600;
+
+      .close-button-action {
+        background-color: $gray-700;
+        color: $gray-300;
+        border-color: $gray-600;
+
+        &:hover {
+          background-color: $gray-600;
+          border-color: $gray-500;
+          color: $gray-200;
+        }
+      }
+    }
+  }
+}
+
+// Animation for dialog entrance
+:host {
+  display: block;
+  animation: dialogFadeIn 0.3s ease-out;
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

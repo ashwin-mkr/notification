@@ -1,0 +1,77 @@
+<div class="notification-dialog-container">
+  <div class="dialog-header">
+    <h2 mat-dialog-title class="dialog-title">
+      <i class="fas fa-bell notification-icon"></i>
+      Notification Details
+    </h2>
+    <button mat-icon-button class="close-button" mat-dialog-close>
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <hr class="notification-divider" />
+
+  <mat-dialog-content class="dialog-content">
+    <div class="notification-details">
+      <div class="detail-row">
+        <div class="detail-label">
+          <i class="fas fa-calendar-alt"></i>
+          <strong>Date:</strong>
+        </div>
+        <div class="detail-value">
+          {{ data.date | date: 'medium' }}
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">
+          <i class="fas fa-user"></i>
+          <strong>From:</strong>
+        </div>
+        <div class="detail-value">
+          {{ data.tickets?.user?.username || data.user?.username || 'Unknown' }}
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">
+          <i class="fas fa-envelope"></i>
+          <strong>Message:</strong>
+        </div>
+        <div class="detail-value message-content">
+          {{ data.message }}
+        </div>
+      </div>
+
+      <div class="detail-row" *ngIf="data.tickets?.user?.accountType || data.user?.accountType">
+        <div class="detail-label">
+          <i class="fas fa-tag"></i>
+          <strong>Type:</strong>
+        </div>
+        <div class="detail-value">
+          <span class="account-type-badge">
+            {{ data.tickets?.user?.accountType || data.user?.accountType }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions" align="end">
+    <button
+      *ngIf="isTicketNotification(data.message)"
+      mat-raised-button
+      color="primary"
+      class="accept-button"
+      (click)="accept()"
+    >
+      <i class="fas fa-check"></i>
+      Accept Ticket
+    </button>
+
+    <button mat-button class="close-button-action" mat-dialog-close>
+      <i class="fas fa-times"></i>
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>
