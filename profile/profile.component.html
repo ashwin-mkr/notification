@@ -1,0 +1,32 @@
+<div class="d-flex profile-media align-items-center" (click)="isShow =!isShow">
+  <img class="img-30" src="assets/images/dashboard/profile.png" alt="">
+  <div class="flex-grow-1"><span>Profile&#64;mobifish</span>
+    <p class="mb-0 font-outfit">Agent 1<i class="fa fa-angle-down"></i></p>
+  </div>
+  <ul class="profile-dropdown onhover-show-div" [class.active]="isShow">
+    <li>
+      <a [routerLink]="['/user']"> <app-feather-icons [icons]="'user'"></app-feather-icons>
+        <span>Account </span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/little-box']"> <app-feather-icons [icons]="'mail'"></app-feather-icons>
+        <span>Inbox</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/todo']"> <app-feather-icons [icons]="'file-text'"></app-feather-icons>
+        <span>Taskboard</span></a>
+    </li>
+    <!--0<li>
+      <a [routerLink]="['/user/edit-profile']">
+        <app-feather-icons [icons]="'settings'"></app-feather-icons> <span>Settings</span>
+      </a>
+    </li>-->
+    <li (click)="logOut()">
+      <a>
+        <app-feather-icons [icons]="'log-in'"></app-feather-icons><span>Log in</span>
+      </a>
+    </li>
+  </ul>
+</div>

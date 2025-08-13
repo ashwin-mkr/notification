@@ -1,0 +1,167 @@
+<div
+  class="page-header row"
+  [ngClass]="{ close_icon: navService.collapseSidebar }"
+  [ngStyle]="{ display: hideScrollNavService.headerFixed ? 'none' : 'flex' }"
+>
+  <div class="header-logo-wrapper col-auto">
+    <div class="logo-wrapper">
+      <a [routerLink]="['/dashboard/default']">
+        <img class="img-fluid for-light" src="assets/images/logo.png" alt="" />
+        <img
+          class="img-fluid for-dark"
+          src="assets/images/darklogo.png"
+          alt=""
+        />
+      </a>
+    </div>
+  </div>
+  <div class="col-4 col-xl-4 page-title">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="header-wrapper col m-0">
+    <div class="row" (clickOutside)="searchService.clickOutside()">
+      <div class="header-logo-wrapper col-auto p-0">
+        <div class="logo-wrapper">
+          <a [routerLink]="['/dashboard/default']">
+            <img class="img-fluid" src="assets/images/logo/logo.png" alt="" />
+          </a>
+        </div>
+        <div class="toggle-sidebar" (click)="sidebarToggle()">
+          <app-common-svg-icon
+            [class]="'stroke-icon sidebar-toggle status_toggle middle'"
+            [icon]="'toggle-icon'"
+          ></app-common-svg-icon>
+        </div>
+      </div>
+      <div
+        class="nav-right col-xxl-8 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto"
+      >
+        <ul class="nav-menus">
+          <div>
+            <div
+              class="popup-overlay"
+              *ngIf="showPopup"
+              (click)="togglePopup()"
+            >
+              <div
+                class="popup-content"
+                [@fadeInOut]
+                (click)="$event.stopPropagation()"
+              >
+                <div class="popup-header">
+                  <h3>NEW</h3>
+                  <button class="close-button" (click)="togglePopup()">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+
+                <div class="popup-body">
+                  <div class="popup-section">
+                    <div class="section-header">
+                      <i class="fas fa-users section-icon"></i>
+                      <h4>Customers</h4>
+                    </div>
+                    <ul>
+                      <li>
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Create New Invoice</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-credit-card"></i>
+                        <span>Payment Receivable</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-file-alt"></i>
+                        <span>Statements</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-receipt"></i>
+                        <span>Sales Receipt</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li (click)="navigateToAddCustomer()">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add Customer</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="popup-section">
+                    <div class="section-header">
+                      <i class="fas fa-store section-icon"></i>
+                      <h4>Vendors</h4>
+                    </div>
+                    <ul>
+                      <li>
+                        <i class="fas fa-money-check"></i>
+                        <span>Create Expense</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Create a Bill</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li (click)="navigateToAddVendor()">
+                        <i class="fas fa-cart-arrow-down"></i>
+                        <span>Add Vendor</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="popup-section">
+                    <div class="section-header">
+                      <i class="fas fa-cog section-icon"></i>
+                      <h4>Others</h4>
+                    </div>
+                    <ul>
+                      <li>
+                        <i class="fas fa-university"></i>
+                        <span>Bank Deposit</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-box"></i>
+                        <span>Add Product/Service</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-book"></i>
+                        <span>Journal Entry</span>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <li class="position-relative">
+            <span class="header-search" (click)="isSearchOpen = !isSearchOpen">
+              <app-common-svg-icon [icon]="'search'"></app-common-svg-icon>
+            </span>
+          </li> -->
+
+          <li class="onhover-dropdown">
+            <app-notifications></app-notifications>
+          </li>
+
+          <li>
+            <app-theme-mode></app-theme-mode>
+          </li>
+          <li class="onhover-dropdown">
+            <app-messages></app-messages>
+          </li>
+          <li class="profile-nav onhover-dropdown px-0 py-0">
+            <app-profile></app-profile>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

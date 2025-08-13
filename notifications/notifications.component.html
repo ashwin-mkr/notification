@@ -1,0 +1,59 @@
+<!-- Notification Icon + Count Badge -->
+<div class="notification-box" (click)="toggleShow()">
+<app-common-svg-icon [icon]="'notification'"></app-common-svg-icon> 
+  <span class="badge rounded-pill badge-primary">
+    {{ notifications?.length || 0 }}
+  </span>
+</div>
+
+<!-- Dropdown -->
+<div class="onhover-show-div notification-dropdown" [class.active]="isShow">
+  <h5 class="f-18 f-w-600 mb-0 dropdown-title">Notifications</h5>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="p-3 text-center">Loading notifications...</div>
+
+  <!-- Error state -->
+  <div *ngIf="error" class="p-3 text-danger">{{ error }}</div>
+
+  <!-- Notification list -->
+  <ul class="notification-box" *ngIf="!loading && !error">
+    <!-- Empty state -->
+    <li *ngIf="latestThree.length === 0" class="text-center text-muted p-2">
+      No notifications available
+    </li>
+
+    <!-- Latest notifications loop -->
+    <li *ngFor="let note of latestThree" class="d-flex mb-2">
+      <div class="flex-shrink-0 me-2">
+        <img
+          src="../../../../../assets/images/logo/notification logo.jpg "
+          alt="Notification"
+          width="30"
+          height="30"
+        />
+      </div>
+      <div class="flex-grow-1">
+        <!-- Username or account type as title -->
+        <h6 class="mb-1">
+          {{ note.tickets?.user?.accountType || note.user?.accountType || 'Unknown User' }}
+        </h6>
+
+        <!-- Truncated message -->
+        <p class="mb-1" style="max-height: 3.2em; overflow: hidden; text-overflow: ellipsis;">
+          {{ getMessage(note.message) }}
+        </p>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted">{{ note.date | date: 'short' }}</small>
+          <button class="btn btn-sm btn-link text-primary p-0" (click)="openNotificationDialog(note)">View</button>
+        </div>
+      </div>
+    </li>
+
+    <!-- Footer link -->
+    <li class="text-center mt-2">
+      <a class="f-w-700" [routerLink]="['/notifications']">Check all</a>
+    </li>
+  </ul>
+</div>

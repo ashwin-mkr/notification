@@ -1,0 +1,46 @@
+<div class="notification-box" (click)="isShow =!isShow">
+  <app-common-svg-icon [icon]="'header-message'"></app-common-svg-icon>
+  <span class="badge rounded-pill badge-info">3 </span>
+</div>
+<div class="onhover-show-div notification-dropdown" [class.active]="isShow">
+  <h5 class="f-18 f-w-600 mb-0 dropdown-title">Messages</h5>
+  <ul class="messages">
+    <li class="d-flex b-light1-primary gap-2">
+      <div class="flex-shrink-0">
+        <img src="assets/images/dashboard-2/user/1.png" alt="Graph">
+      </div>
+      <div class="flex-grow-1">
+        <a [routerLink]="['/chat/private-chat']">
+          <h6 class="font-primary f-w-600">Hackett Yessenia</h6>
+        </a>
+        <p>Hello Miss... 🥳 </p>
+      </div><span>10 min.</span>
+    </li>
+    <li class="d-flex b-light1-secondary gap-2">
+      <div class="flex-shrink-0">
+        <img src="assets/images/dashboard-2/user/2.png" alt="Graph">
+      </div>
+      <div class="flex-grow-1">
+        <a [routerLink]="['/chat/private-chat']">
+          <h6 class="font-secondary f-w-600">schneider Adan</h6>
+        </a>
+        <p>Wishing You a Happy Birthday Dear.. 🥳</p>
+      </div><span>25 min.</span>
+    </li>
+    <li class="d-flex b-light1-success gap-2">
+      <div class="flex-shrink-0">
+        <img src="assets/images/dashboard-2/user/3.png" alt="Graph">
+      </div>
+      <div class="flex-grow-1">
+        <a [routerLink]="['/chat/private-chat']">
+          <h6 class="font-success f-w-600">Mahdi Gholizadeh</h6>
+        </a>
+        <p>Hello Dear!! This Theme Is Very beautiful</p>
+      </div>
+      <span>1 hours</span>
+    </li>
+    <li>
+      <a class="f-w-700" [routerLink]="['/little-box']">Check all</a>
+    </li>
+  </ul>
+</div>

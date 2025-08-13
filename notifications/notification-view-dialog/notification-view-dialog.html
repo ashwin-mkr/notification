@@ -1,0 +1,21 @@
+<h2 mat-dialog-title >Notification Details</h2>
+<hr class="notification-divider" />
+
+<mat-dialog-content>
+  <p><strong>Date:</strong> {{ data.date | date: 'medium' }}</p>
+  <p><strong>From:</strong> {{ data.tickets?.user?.username || 'Unknown' }}</p>
+  <p><strong>Message:</strong> {{ data.message }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    *ngIf="isTicketNotification(data.message)"
+    mat-button
+    color="primary"
+    (click)="accept()"
+  >
+    Accept
+  </button>
+
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

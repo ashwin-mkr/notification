@@ -1,0 +1,71 @@
+/* Dialog Title */
+.mat-dialog-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    
+}
+
+
+/* Dialog Content */
+mat-dialog-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+    padding-top: 5px;
+}
+
+mat-dialog-content p {
+    margin: 8px 0;
+}
+
+mat-dialog-content strong {
+    color: #222;
+}
+
+/* Actions container */
+mat-dialog-actions {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 10px;
+}
+
+.notification-divider {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 0 0 10px 0;
+}
+
+
+/* Accept Button */
+button[mat-button][color="primary"] {
+    background-color: #4caf50;
+    color: #fff;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-right: 10px; 
+}
+
+button[mat-button][color="primary"]:hover {
+    background-color: #43a047;
+}
+
+/* Close Button */
+button[mat-button]:not([color]) {
+    background-color: #f44336;
+    color: #fff;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    
+}
+
+button[mat-button]:not([color]):hover {
+    background-color: #d32f2f;
+}
